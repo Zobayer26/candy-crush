@@ -129,8 +129,7 @@ function App() {
   const dragEnd = (e) => {
     const dragId = parseInt(dragIsStart.getAttribute('data-id'));
     const replaceId = parseInt(dragIsReplace.getAttribute('data-id'));
-    currentColor[replaceId] = dragIsStart.getAttribute('src')
-    currentColor[dragId] = dragIsReplace.getAttribute('src')
+
     const validMoves = [
       dragId - 1,
       dragId - width,
@@ -138,6 +137,10 @@ function App() {
       dragId + width
     ]
     const validmove = validMoves.includes(replaceId)
+    if (validmove) {
+      currentColor[replaceId] = dragIsStart.getAttribute('src')
+      currentColor[dragId] = dragIsReplace.getAttribute('src')
+    }
 
     const isAColumnofFour = checkForColumnofFour();
     const isARowofFour = checkForRowofFour();
